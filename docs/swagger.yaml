@@ -1,0 +1,48 @@
+definitions:
+  main.Response:
+    properties:
+      count:
+        type: integer
+      translations:
+        items:
+          $ref: '#/definitions/main.Translation'
+        type: array
+      word:
+        type: string
+    type: object
+  main.Translation:
+    properties:
+      category:
+        type: string
+      source:
+        type: string
+      translation:
+        type: string
+      word_type:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /translate:
+    get:
+      consumes:
+      - application/json
+      description: Fetch translations for a given Turkish word from the Tureng website
+      parameters:
+      - description: Turkish word to translate
+        in: query
+        name: word
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Response'
+      summary: Translate a word from Turkish to English using Tureng API
+      tags:
+      - translate
+swagger: "2.0"

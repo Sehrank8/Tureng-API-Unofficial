@@ -1,14 +1,17 @@
 package main
 
 import (
+	_ "TurengAPI/docs"
 	"encoding/json"
 	"fmt"
+	"github.com/gocolly/colly"
+	httpSwagger "github.com/swaggo/http-swagger"
 	"log"
 	"net/http"
 	"regexp"
 	"strings"
 
-	"github.com/gocolly/colly"
+	_ "github.com/swaggo/http-swagger"
 )
 
 // Translation struct is any one translation of a word
@@ -125,10 +128,18 @@ func translateHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonData)
 }
 
+// @Summary		Translate a word from Turkish to English using Tureng API
+// @Description	Fetch translations for a given Turkish word from the Tureng website
+// @Tags			translate
+// @Accept			json
+// @Produce		json
+// @Param			word	query		string	true	"Turkish word to translate"
+// @Success		200		{object}	Response
+// @Router			/translate [get]
 func main() {
 	// Set up the HTTP server
 	http.HandleFunc("/translate", translateHandler)
-
+	http.Handle("/swagger/", httpSwagger.WrapHandler)
 	log.Println("Starting server on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

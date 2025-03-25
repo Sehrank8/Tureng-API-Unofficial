@@ -1,0 +1,76 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/translate": {
+            "get": {
+                "description": "Fetch translations for a given Turkish word from the Tureng website",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "translate"
+                ],
+                "summary": "Translate a word from Turkish to English using Tureng API",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Turkish word to translate",
+                        "name": "word",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Response": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "translations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.Translation"
+                    }
+                },
+                "word": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Translation": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "translation": {
+                    "type": "string"
+                },
+                "word_type": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
