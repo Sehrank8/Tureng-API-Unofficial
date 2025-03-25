@@ -1,12 +1,12 @@
-# Tureng Translation API English to Turkish.
-
+# [Tureng](https://tureng.com/tr/turkce-ingilizce) Translation API English to Turkish.
+#### **Inspired by [tureng-api](https://github.com/gokhanamal/tureng-api), (Because I couldn't get it to work for some reason).**
 A simple REST API that scrapes **Tureng** to fetch English-to-Turkish translations.  
-Built with **Go (Golang)** and `colly` for web scraping.
+Built with [**Go (Golang)**](https://go.dev/) and [**colly**](https://github.com/gocolly/colly) for web scraping.
 
 ---
 
 ## Features
-* Fetch Turkish-to-English translations from **Tureng**  
+* Fetch English-to-Turkish translations from [**Tureng**](https://tureng.com/tr/turkce-ingilizce)  
 * Provides **word type (isim, fiil, sıfat, etc.)**  
 * Returns **category & source** (e.g., technical, general, economics)  
 * JSON response with **word, count, and translations**  
@@ -30,6 +30,7 @@ go run main.go
 ```
 The server will start on http://localhost:8080.
 
+---
 
 ## Usage
 ### **GET /translate/{word}**
@@ -61,6 +62,6 @@ curl http://localhost:8080/translate/kitap
   ]
 }
 ```
-
+---
 
 
