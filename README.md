@@ -2,7 +2,7 @@
 #### **Inspired by [tureng-api](https://github.com/gokhanamal/tureng-api), (Because I couldn't get it to work for some reason).**
 A simple REST API that scrapes **Tureng** to fetch English-to-Turkish translations.  
 Built with [**Go (Golang)**](https://go.dev/) and [**colly**](https://github.com/gocolly/colly) for web scraping.
-
+There is also a branch with swagger support if you want to try it.
 ---
 
 ## Features
