@@ -38,7 +38,7 @@ Fetch translations for a given English word.
 
 **Example Request:**
 ```sh
-curl http://localhost:8080/translate/book
+curl http://localhost:8080/translate?word=book
 ```
 
 **Example Response:**
