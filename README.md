@@ -24,7 +24,7 @@ cd tureng-api
 ```sh
 go mod tidy
 ```
-### **2️⃣ Install Dependencies**
+### **3️⃣ Run the API**
 ```sh
 go run main.go
 ```
