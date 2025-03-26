@@ -127,6 +127,9 @@ func translateHandler(w http.ResponseWriter, r *http.Request) {
 	// Send response
 	w.Write(jsonData)
 }
+func serveHTML(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "index.html")
+}
 
 // @Summary		Translate a word from Turkish to English using Tureng API
 // @Description	Fetch translations for a given Turkish word from the Tureng website
@@ -138,6 +141,7 @@ func translateHandler(w http.ResponseWriter, r *http.Request) {
 // @Router			/translate [get]
 func main() {
 	// Set up the HTTP server
+	http.HandleFunc("/", serveHTML)
 	http.HandleFunc("/translate", translateHandler)
 	http.Handle("/swagger/", httpSwagger.WrapHandler)
 	log.Println("Starting server on port 8080")

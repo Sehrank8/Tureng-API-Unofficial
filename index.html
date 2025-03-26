@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tureng Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Turkish to English Translator</h2>
+<input type="text" id="wordInput" placeholder="Enter an English word">
+<button onclick="translateWord()">Translate</button>
+
+<h3>Results:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>English</th>
+        <th>Turkish</th>
+        <th>Word Type</th>
+    </tr>
+    </thead>
+    <tbody id="results"></tbody>
+</table>
+
+<script>
+    function translateWord() {
+        const word = document.getElementById("wordInput").value;
+        if (!word) {
+            alert("Please enter a word!");
+            return;
+        }
+
+        fetch(`/translate?word=${word}`)
+            .then(response => response.json())
+            .then(data => {
+                const resultsTable = document.getElementById("results");
+                resultsTable.innerHTML = ""; // Clear previous results
+
+                data.translations.forEach(item => {
+                    const row = `<tr>
+                                        <td>${item.category}</td>
+                                        <td>${item.source}</td>
+                                        <td>${item.translation}</td>
+                                        <td>${item.word_type}</td>
+                                     </tr>`;
+                    resultsTable.innerHTML += row;
+                });
+            })
+            .catch(error => console.error("Error:", error));
+    }
+</script>
+
+</body>
+</html>
